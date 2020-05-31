@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services:
   - docker
@@ -13,9 +14,7 @@ after_success:
   - docker build -t nachis/multi-nginx ./nginx
   - docker build -t nachis/multi-server ./server
   - docker build -t nachis/multi-worker ./worker
-  #Log in to docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  #Push images to docker
   - docker push nachis/multi-client
   - docker push nachis/multi-nginx
   - docker push nachis/multi-server
